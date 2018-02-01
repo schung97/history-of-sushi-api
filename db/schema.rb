@@ -10,14 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131230526) do
+ActiveRecord::Schema.define(version: 20180201134201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
   create_table "contents", force: :cascade do |t|
-    t.string "category"
+    t.bigint "category_id"
     t.text "fact"
+    t.index ["category_id"], name: "index_contents_on_category_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -28,11 +34,11 @@ ActiveRecord::Schema.define(version: 20180131230526) do
   end
 
   create_table "questionnaires", force: :cascade do |t|
-    t.bigint "content_id"
+    t.bigint "category_id"
     t.string "question"
     t.string "answers", array: true
     t.index ["answers"], name: "index_questionnaires_on_answers", using: :gin
-    t.index ["content_id"], name: "index_questionnaires_on_content_id"
+    t.index ["category_id"], name: "index_questionnaires_on_category_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -55,12 +61,14 @@ ActiveRecord::Schema.define(version: 20180131230526) do
     t.string "password_digest"
     t.string "joined_on"
     t.string "knowledge", default: "Amateur"
+    t.string "avatar", default: "https://media.giphy.com/media/xUOwG7xTFIS7K5Z12o/giphy.gif"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "contents", "categories"
   add_foreign_key "favorites", "restaurants"
   add_foreign_key "favorites", "users"
-  add_foreign_key "questionnaires", "contents"
+  add_foreign_key "questionnaires", "categories"
   add_foreign_key "suggestions", "restaurants"
   add_foreign_key "suggestions", "users"
 end

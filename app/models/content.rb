@@ -1,3 +1,3 @@
 class Content < ApplicationRecord
-  has_many :questionnaires
+  belongs_to :category
 end

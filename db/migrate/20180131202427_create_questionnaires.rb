@@ -1,7 +1,7 @@
 class CreateQuestionnaires < ActiveRecord::Migration[5.1]
   def change
     create_table :questionnaires do |t|
-      t.belongs_to :content, foreign_key: true
+      t.belongs_to :category, foreign_key: true
       t.string :question
       t.string 'answers', array: true
 
