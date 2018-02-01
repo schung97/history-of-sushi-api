@@ -35,10 +35,11 @@ namespace :db do
       Content.delete_all
 
       CSV.foreach('./lib/project/contents.csv') do |row|
-        Content.create({
-          category_id: row[0],
-          fact: row[1]
-        })
+        puts row.inspect
+        # Content.create({
+        #   category_id: row[0],
+        #   fact: row[1]
+        # })
       end
     end
 
@@ -47,11 +48,12 @@ namespace :db do
       Questionnaire.delete_all
 
       CSV.foreach('./lib/project/questionnaires.csv') do |row|
-        Questionnaire.create({
-          category_id: row[0],
-          question: row[1],
-          answers: row[2]
-        })
+        puts row.inspect
+        # Questionnaire.create({
+        #   category_id: row[0],
+        #   question: row[1],
+        #   answers: row[2]
+        # })
       end
     end
 
