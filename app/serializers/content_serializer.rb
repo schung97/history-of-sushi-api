@@ -1,4 +1,4 @@
 class ContentSerializer < ActiveModel::Serializer
-  attributes :id, :fact
+  attributes :fact
   belongs_to :category
 end

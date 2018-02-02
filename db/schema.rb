@@ -36,8 +36,7 @@ ActiveRecord::Schema.define(version: 20180201134201) do
   create_table "questionnaires", force: :cascade do |t|
     t.bigint "category_id"
     t.string "question"
-    t.string "answers", array: true
-    t.index ["answers"], name: "index_questionnaires_on_answers", using: :gin
+    t.string "answer"
     t.index ["category_id"], name: "index_questionnaires_on_category_id"
   end
 

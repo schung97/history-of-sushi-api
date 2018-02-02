@@ -35,25 +35,23 @@ namespace :db do
       Content.delete_all
 
       CSV.foreach('./lib/project/contents.csv') do |row|
-        puts row.inspect
-        # Content.create({
-        #   category_id: row[0],
-        #   fact: row[1]
-        # })
+        Content.create({
+          category_id: row[0],
+          fact: row[1]
+        })
       end
     end
 
     desc "Import Questionnaire CSV to create questions and destroy previous"
-    task contents: :environment do
+    task questionnaires: :environment do
       Questionnaire.delete_all
 
       CSV.foreach('./lib/project/questionnaires.csv') do |row|
-        puts row.inspect
-        # Questionnaire.create({
-        #   category_id: row[0],
-        #   question: row[1],
-        #   answers: row[2]
-        # })
+        Questionnaire.create({
+          category_id: row[0],
+          question: row[1],
+          answer: row[2]
+        })
       end
     end
 
