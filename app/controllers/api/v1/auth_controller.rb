@@ -1,20 +1,28 @@
 class Api::V1::AuthController < ApplicationController
 
   def create
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      render json: {id: user.id, username: user.username, user: user, token: issue_token(user)}
+    user = User.find_by(username: auth_params[:username])
+    if user && user.authenticate(auth_params[:password])
+      render json: {
+        id: user.id,
+        username: user.username,
+        jwt: JWT.encode({user_id: user.id}, Figaro.env.secret_key_base, 'HS256')
+      }
     else
-      render({json: {error: 'User not valid'}, status: 401})
+      render json: { error: 'User not valid' }, status: :unauthorized
     end
   end
 
   def show
     if current_user
-      render json: {id: current_user.id, username: current_user.username, token: issue_token(current_user)}
+      render json: { id: current_user.id, username: current_user.username }
     else
-      render({json: {error: 'Token is not valid'}, status: 401})
+      render json: { error: 'No id present on headers' }, status: :unauthorized
     end
+  end
+
+  def auth_params
+    params.require(:auth).permit(:username, :password)
   end
 
 end

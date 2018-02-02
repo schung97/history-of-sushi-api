@@ -1,11 +1,10 @@
-firstname,lastname,username,email,password,password_confirmation,joined_on,knowledge
-Silvia,Chung,fish,fish@gmail.com,123456,123456,"“January 26, 2018”",Show-off
-Julia,Chung,neko,neko@gmail.com,123456,123456,"“January 26, 2018”",Above-Average
-Cen,Si,cen,cen@gmail.com,123456,123456,"“January 28, 2018”",Appreciation
-Jenna,Kim,jenna,jenna@gmail.com,123456,123456,"“January 29, 2018”",Above-Average
-Josh,Wise,josh,boy@gmail.com,123456,123456,"“February 1, 2018”",Amateur
-Marie,Yamamoto,marie,marie@gmail.com,123456,123456,"“February 1, 2018”",Amateur
-Helen,Zhang,helen,helen@gmail.com,123456,123456,"“January 27, 2018”",Basic
-Renae,Lee,renae,renae@gmail.com,123456,123456,"“January 31, 2018”",Show-off
-Scarlet,Jang,scarlet,scarlet@gmail.com,123456,123456,"“January 27, 2018”",Basic
-Amelia,Hyun,amelia,amelia@gmail.com,123456,123456,"“January 29, 2018”",Appreciation
+Silvia,Chung,fish,fish@gmail.com,123456,123456,"January 26, 2018",Show-off
+Julia,Chung,neko,neko@gmail.com,123456,123456,"January 26, 2018",Above-Average
+Cen,Si,cen,cen@gmail.com,123456,123456,"January 28, 2018",Appreciation
+Jenna,Kim,jenna,jenna@gmail.com,123456,123456,"January 29, 2018",Above-Average
+Josh,Wise,josh,boy@gmail.com,123456,123456,"February 1, 2018",Amateur
+Marie,Yamamoto,marie,marie@gmail.com,123456,123456,"February 1, 2018",Amateur
+Helen,Zhang,helen,helen@gmail.com,123456,123456,"January 27, 2018",Basic
+Renae,Lee,renae,renae@gmail.com,123456,123456,"January 31, 2018",Show-off
+Scarlet,Jang,scarlet,scarlet@gmail.com,123456,123456,"January 27, 2018",Basic
+Amelia,Hyun,amelia,amelia@gmail.com,123456,123456,"January 29, 2018",Appreciation

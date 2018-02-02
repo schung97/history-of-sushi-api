@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
 
   def decoded_token
     begin
-      JWT.decode(request.headers['Authorization'], ENV['secret_key'])
+      JWT.decode(request.headers['Authorization'], Figaro.env.secret_key_base)
     rescue JWT::DecodeError
       [{}]
     end
