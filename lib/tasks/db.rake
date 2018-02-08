@@ -55,6 +55,17 @@ namespace :db do
       end
     end
 
+    desc "Import Restaurants CSV to create questions and destroy previous"
+    task restaurants: :environment do
+      Restaurant.delete_all
+
+      CSV.foreach('./lib/project/restaurant.csv') do |row|
+        Restaurant.create({
+          name: row[0],
+          alias: row[1],
+        })
+      end
+    end
 
   end
 end

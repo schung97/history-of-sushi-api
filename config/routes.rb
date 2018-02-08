@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :restaurants, only: :index
       resources :categories, only: :index
 
-      post '/auth', to: 'auth#create'
+      post '/login', to: 'auth#create'
       get '/current-user', to: 'auth#show'
     end
   end

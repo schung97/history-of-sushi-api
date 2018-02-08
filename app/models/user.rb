@@ -9,3 +9,4 @@ class User < ApplicationRecord
   validates :firstname, :lastname, :username, presence: true
   validates :password, length: { minimum: 6 }, on: :create
 end
+# , dependent: :destroy

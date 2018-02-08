@@ -2,7 +2,12 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+
     if user.save
+    render json:  {
+        user: UserSerializer.new(user),
+        jwt: JWT.encode({user_id: user.id}, Figaro.env.secret_key_base, 'HS256')
+      }
       render json: {status: 'User created successully' }, status: :created
     else
       render json: {errors: user.errors.full_messages}, status: :bad_request
@@ -11,6 +16,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
+
     render json: user, status: :ok
   end
 

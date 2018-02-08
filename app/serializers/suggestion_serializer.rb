@@ -1,7 +1,7 @@
 class SuggestionSerializer < ActiveModel::Serializer
   attributes :id, :restaurant, :alias_name
   belongs_to :user
-  belongs_to :restaurant, serializer: RestaurantSerializer
+  belongs_to :restaurant
 
   def restaurant
     object.restaurant.name
@@ -10,5 +10,5 @@ class SuggestionSerializer < ActiveModel::Serializer
   def alias_name
     object.restaurant.alias
   end
-  
+
 end

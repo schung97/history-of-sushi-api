@@ -1,7 +1,7 @@
 class FavoriteSerializer < ActiveModel::Serializer
   attributes :id, :restaurant, :alias_name
   belongs_to :user
-  belongs_to :restaurant, serializer: RestaurantSerializer
+  belongs_to :restaurant
 
   def restaurant
     object.restaurant.name
