@@ -7,8 +7,8 @@ class Api::V1::UsersController < ApplicationController
     render json:  {
         user: UserSerializer.new(user),
         jwt: JWT.encode({user_id: user.id}, Figaro.env.secret_key_base, 'HS256')
-      }
-      render json: {status: 'User created successully' }, status: :created
+      }, status: :created
+      # render json: {status: 'User created successully' }, status: :created
     else
       render json: {errors: user.errors.full_messages}, status: :bad_request
     end

@@ -1,4 +1,10 @@
 require 'csv'
+require 'date'
+require_relative '../data/basic'
+require_relative '../data/appreciation'
+require_relative '../data/above_average'
+require_relative '../data/show_off'
+require_relative '../data/photos'
 
 namespace :db do
   namespace :seed do
@@ -47,25 +53,53 @@ namespace :db do
       Questionnaire.delete_all
 
       CSV.foreach('./lib/project/questionnaires.csv') do |row|
-        Questionnaire.create({
-          category_id: row[0],
-          question: row[1],
-          answer: row[2]
-        })
+        question = Questionnaire.create({ category_id: row[0], question: row[1], answer: row[2] })
+
+        if row[2] != 'True' && row[2] != 'False'
+          question.other.push(row[3],row[4], row[5])
+          question.save
+        end
       end
     end
 
-    desc "Import Restaurants CSV to create questions and destroy previous"
+    desc "Create Restaurants"
     task restaurants: :environment do
       Restaurant.delete_all
 
-      CSV.foreach('./lib/project/restaurant.csv') do |row|
-        Restaurant.create({
-          name: row[0],
-          alias: row[1],
-        })
+      BASIC.each do |key, r|
+        Restaurant.create({ rank: "Basic", name: r['name'], rating: r['rating'], city: r['location']['city'], address: r['location']['formatted_address'], phone: r['display_phone'], review_count: r['review_count'], url: r['url'], price: r['price'] })
+      end
+
+      ABOVE_AVERAGE.each do |key, r|
+        Restaurant.create({ rank: "Above-Average", name: r['name'], rating: r['rating'], city: r['location']['city'], address: r['location']['formatted_address'], phone: r['display_phone'], review_count: r['review_count'], url: r['url'], price: r['price'] })
+      end
+
+      SHOW_OFF.each do |key, r|
+        Restaurant.create({ rank: "Show-off", name: r['name'], rating: r['rating'], city: r['location']['city'], address: r['location']['formatted_address'], phone: r['display_phone'], review_count: r['review_count'], url: r['url'], price: r['price'] })
+      end
+
+      APPRECIATION.each do |key, r|
+        Restaurant.create({ rank: "Appreciation", name: r['name'], rating: r['rating'], city: r['location']['city'], address: r['location']['formatted_address'], phone: r['display_phone'], review_count: r['review_count'], url: r['url'], price: r['price'] })
+      end
+
+      PHOTOS.each do |r|
+        res = Restaurant.find_by(name: r['name'])
+        res.photos.concat(r['photos']).uniq!
+        res.save
       end
     end
+
+
+    desc "Create Fake Data"
+    task fakedata: :environment do
+      Suggestion.delete_all
+      Suggestion.create({ user_id: 1, restaurant_id: 88})
+      Suggestion.create({ user_id: 1, restaurant_id: 91})
+      Suggestion.create({ user_id: 1, restaurant_id: 93})
+      Favorite.create({ user_id: 1, restaurant_id: 88})
+      Favorite.create({ user_id: 1, restaurant_id: 91})
+    end
+
 
   end
 end

@@ -37,12 +37,21 @@ ActiveRecord::Schema.define(version: 20180201134201) do
     t.bigint "category_id"
     t.string "question"
     t.string "answer"
+    t.string "other", default: [], array: true
     t.index ["category_id"], name: "index_questionnaires_on_category_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.string "rank"
     t.string "name"
-    t.string "alias"
+    t.integer "rating"
+    t.string "address"
+    t.string "city"
+    t.string "phone"
+    t.integer "review_count"
+    t.string "url"
+    t.string "price"
+    t.string "photos", default: [], array: true
   end
 
   create_table "suggestions", force: :cascade do |t|
