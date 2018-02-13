@@ -65,12 +65,9 @@ ActiveRecord::Schema.define(version: 20180201134201) do
     t.string "firstname"
     t.string "lastname"
     t.string "username"
-    t.string "email"
     t.string "password_digest"
-    t.string "joined_on"
     t.string "knowledge", default: "Amateur"
     t.string "avatar", default: "https://media.giphy.com/media/xUOwG7xTFIS7K5Z12o/giphy.gif"
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "contents", "categories"

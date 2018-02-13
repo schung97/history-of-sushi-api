@@ -18,10 +18,8 @@ namespace :db do
           firstname: row[0],
           lastname: row[1],
           username: row[2],
-          email: row[3],
           password: row[4],
           password_confirmation: row[5],
-          joined_on: row[6],
           knowledge: row[7]
           })
         end
