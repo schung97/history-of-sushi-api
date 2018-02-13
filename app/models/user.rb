@@ -8,6 +8,5 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates :firstname, :lastname, :username, presence: true
   validates :password, length: { minimum: 6 }, on: :create
-  # accepts_nested_attributes_for :suggestions
+
 end
-# , dependent: :destroy
