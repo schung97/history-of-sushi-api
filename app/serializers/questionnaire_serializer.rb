@@ -1,4 +1,4 @@
 class QuestionnaireSerializer < ActiveModel::Serializer
-  attributes :question, :answer
+  attributes :id, :question, :answer, :other
   belongs_to :category
 end

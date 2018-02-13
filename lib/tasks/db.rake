@@ -56,7 +56,7 @@ namespace :db do
         question = Questionnaire.create({ category_id: row[0], question: row[1], answer: row[2] })
 
         if row[2] != 'True' && row[2] != 'False'
-          question.other.push(row[3],row[4], row[5])
+          question.other.push({"is_right" => 'False', "value" => "#{row[3]}" },{"is_right" => 'False', "value" => "#{row[4]}" }, { "is_right" => 'False', "value" => "#{row[5]}" }, { "is_right" => 'True', "value" => "#{question.answer}" })
           question.save
         end
       end

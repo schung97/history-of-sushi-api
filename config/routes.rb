@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :restaurants, only: :index
       resources :categories, only: :index
       resources :favorites, only: [:create, :destroy]
+      resources :suggestions, only: :create
 
 
       post '/login', to: 'auth#create'
