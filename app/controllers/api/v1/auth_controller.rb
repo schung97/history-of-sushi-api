@@ -2,7 +2,7 @@ class Api::V1::AuthController < ApplicationController
 
   def create
     user = User.find_by(username: auth_params[:username])
-    byebug
+
     if user && user.authenticate(auth_params[:password])
       render json: {
         user: UserSerializer.new(user),
